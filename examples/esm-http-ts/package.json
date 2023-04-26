@@ -7,7 +7,7 @@
   "type": "module",
   "scripts": {
     "build": "tsc --build",
-    "start": "node --experimental-loader=import-in-the-middle/hook.mjs ./build/index.js"
+    "start": "node --experimental-import-meta-resolve --experimental-loader=@opentelemetry/instrumentation/hook.mjs ./build/index.js"
   },
   "repository": {
     "type": "git",
@@ -32,7 +32,7 @@
   "dependencies": {
     "@opentelemetry/api": "^1.4.0",
     "@opentelemetry/exporter-trace-otlp-proto": "^0.36.0",
-    "@opentelemetry/instrumentation": "0.36.1",
+    "@opentelemetry/instrumentation": "0.38.0",
     "@opentelemetry/instrumentation-http": "0.36.1",
     "@opentelemetry/resources": "^1.9.1",
     "@opentelemetry/sdk-trace-base": "^1.9.1",
