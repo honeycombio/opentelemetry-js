@@ -266,7 +266,7 @@ export abstract class InstrumentationBase<T = any>
         : this._requireInTheMiddleSingleton.register(module.name, onRequire);
 
       this._hooks.push(hook);
-      const esmHook = new ESMHook(
+      const esmHook = new (ESMHook as unknown as typeof ESMHook)(
         [module.name],
         { internals: false },
         <HookFn>hookFn
