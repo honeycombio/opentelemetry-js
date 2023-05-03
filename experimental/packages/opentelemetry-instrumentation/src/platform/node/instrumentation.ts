@@ -76,7 +76,11 @@ export abstract class InstrumentationBase<T = any>
     if (!utilTypes.isProxy(moduleExports)) {
       return wrap(moduleExports, name, wrapper);
     } else {
-      return this._wrapEsm(moduleExports, name, wrapper);
+      const wrapped = wrap(Object.assign({}, moduleExports), name, wrapper);
+
+      return Object.defineProperty(moduleExports, name, {
+        value: wrapped,
+      });
     }
   };
 
@@ -84,21 +88,10 @@ export abstract class InstrumentationBase<T = any>
     if (!utilTypes.isProxy(moduleExports)) {
       return unwrap(moduleExports, name);
     } else {
-      return this._unwrapEsm(moduleExports, name);
+      return Object.defineProperty(moduleExports, name, {
+        value: moduleExports[name],
+      });
     }
-  };
-
-  private _wrapEsm: typeof wrap = (moduleExports, name, wrapper) => {
-    const wrapped = wrap(Object.assign({}, moduleExports), name, wrapper);
-    Object.defineProperty(moduleExports, name, {
-      value: wrapped,
-    });
-  };
-
-  private _unwrapEsm: typeof unwrap = (moduleExports, name) => {
-    Object.defineProperty(moduleExports, name, {
-      value: moduleExports[name],
-    });
   };
 
   protected override _massWrap: typeof massWrap = (
