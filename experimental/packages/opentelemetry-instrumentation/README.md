@@ -268,7 +268,7 @@ to avoid leaking information from one provider to the other because there are a 
 As the module loading mechanism for ESM is different than CJS, you need to select a custom loader so instrumentation can load hook on the esm module it want to patch. To do so, you must provide the `--experimental-loader=@opentelemetry/instrumentation/hook.mjs` flag to the `node` binary. Alternatively you can set the `NODE_OPTIONS` environment variable to `NODE_OPTIONS="--experimental-loader=@opentelemetry/instrumentation/hook.mjs"`.
 As the ESM module loader from NodeJS is experimental, so is our support for it. Feel free to provide feedback or report issues about it.
 
-**Note**: ESM is not yet supported for Node 20.
+**Note**: ESM Instrumentation is not yet supported for Node 20.
 
 ## License
 
